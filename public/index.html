@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Belajar Inggris</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F6F8;--card:#fff;--ink:#12263A;--mute:#5B6B7A;--line:#D5DEE5;--acc:#0E8A7D;--accink:#fff;--sun:#F2B632;--bad:#C0392B;--ok:#0E8A7D;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1A24;--card:#16273A;--ink:#EAF1F6;--mute:#9AAEBF;--line:#2A3E52;--acc:#3CC4B3;--accink:#06201C;--bad:#FF7B6B;--ok:#3CC4B3}}
+:root[data-theme="dark"]{--bg:#0E1A24;--card:#16273A;--ink:#EAF1F6;--mute:#9AAEBF;--line:#2A3E52;--acc:#3CC4B3;--accink:#06201C;--bad:#FF7B6B;--ok:#3CC4B3}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.5}
+main{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:2rem;font-weight:800;margin:8px 0 2px;letter-spacing:-.02em}
+.sub{color:var(--mute);margin:0 0 18px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+button{font:inherit;color:inherit;cursor:pointer}
+.chip{border:1.5px solid var(--line);background:var(--card);padding:7px 14px;border-radius:99px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.gen{display:flex;gap:8px;margin:4px 0 10px}
+.gen[hidden]{display:none}
+.gen input{flex:1;min-width:0;font:inherit;padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.gen input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.btn:disabled{opacity:.6;cursor:wait}
+[hidden]{display:none!important}
+.gcard{align-items:flex-start;text-align:left;justify-content:flex-start}
+.gcard p{margin:8px 0}
+.frm{background:color-mix(in srgb,var(--sun) 25%,var(--card));border-left:4px solid var(--sun);padding:10px 14px;border-radius:8px;font-weight:600;margin:4px 0 16px;width:100%}
+.exr{margin-bottom:12px;width:100%}
+.exr .en{font-weight:600}
+.exr .idn{color:var(--mute)}
+.exr .speak{margin:4px 0 0;padding:2px 10px;font-size:.85rem}
+.mk-ok{color:var(--ok);font-weight:600}
+.mk-miss{color:var(--bad);font-weight:600;text-decoration:underline}
+.chat{display:flex;flex-direction:column;gap:10px;max-height:50vh;overflow-y:auto;padding:4px 2px;margin-bottom:12px}
+.bub{max-width:88%;padding:10px 14px;border-radius:16px;line-height:1.45}
+.bub.ai{background:var(--card);border:1.5px solid var(--line);align-self:flex-start}
+.bub.me{background:var(--acc);color:var(--accink);align-self:flex-end}
+.bub .acts{display:flex;gap:6px;margin-top:8px}
+.bub .acts .speak{margin:0;padding:2px 10px;font-size:.85rem}
+.bub .idn{color:var(--mute);margin-top:6px;font-size:.92rem}
+.fix{margin-top:8px;padding-top:6px;border-top:1px solid currentColor;font-size:.9rem;white-space:pre-line}
+.tabs{overflow-x:auto;display:flex;border-bottom:2px solid var(--line);margin:18px 0}
+.tab{flex:1;white-space:nowrap;background:none;border:0;padding:10px 8px;font-size:.92rem;font-weight:600;color:var(--mute);border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--sun)}
+button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;min-height:230px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;width:100%}
+.word{font-size:2.6rem;font-weight:800;letter-spacing:-.02em}
+.mean{font-size:1.9rem;font-weight:600;color:var(--acc)}
+.ex{color:var(--mute);margin-top:10px;font-style:italic}
+.tr{color:var(--ink);margin-top:6px}
+.qp{font-size:1.35rem;font-weight:600}
+.hint{color:var(--mute);font-size:.9rem;margin-top:14px}
+.btn{background:var(--acc);color:var(--accink);border:0;padding:11px 20px;border-radius:12px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:14px}
+.count{color:var(--mute)}
+.opts{display:grid;gap:10px;margin-top:14px}
+.opt{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:13px 16px;text-align:left;font-weight:600}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--card))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 16%,var(--card))}
+.speak{background:none;border:1.5px solid var(--line);border-radius:99px;padding:5px 12px;margin-top:12px;color:var(--mute)}
+.big{font-size:3rem;font-weight:800}
+.bar{height:6px;background:var(--line);border-radius:9px;overflow:hidden;margin-bottom:14px}
+.bar i{display:block;height:100%;background:var(--sun);transition:width .25s}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>Belajar Inggris</h1>
+<p class="sub">Pilih topik, lalu belajar lewat kartu, kuis, grammar, listening, speaking, atau mengobrol.</p>
+<div class="row" id="topics" role="group" aria-label="Topik"></div>
+<div class="gen" id="gen" hidden>
+<input id="ti" type="text" maxlength="60" placeholder="Ketik topik apa saja, mis. di bandara" aria-label="Topik baru">
+<button class="btn" id="tb">Buat topik</button>
+</div>
+<p class="hint" id="gm" role="status" style="margin:-4px 0 8px"></p>
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" id="t-card" aria-selected="true">Kartu</button>
+<button class="tab" role="tab" id="t-quiz" aria-selected="false">Kuis</button>
+<button class="tab" role="tab" id="t-gram" aria-selected="false">Grammar</button>
+<button class="tab" role="tab" id="t-listen" aria-selected="false">Listening</button>
+<button class="tab" role="tab" id="t-speak" aria-selected="false">Speaking</button>
+<button class="tab" role="tab" id="t-chat" aria-selected="false">Obrolan</button>
+</div>
+<section id="view" aria-live="polite"></section>
+</main>
+<script>
+var DATA={
+"Sehari-hari":[["borrow","meminjam","Can I borrow your pen?","Boleh saya pinjam penmu?"],["improve","meningkatkan","I want to improve my English.","Saya ingin meningkatkan Bahasa Inggris saya."],["usually","biasanya","I usually wake up at six.","Saya biasanya bangun jam enam."],["enough","cukup","Is this enough?","Apakah ini cukup?"],["schedule","jadwal","What is your schedule today?","Apa jadwalmu hari ini?"],["remind","mengingatkan","Please remind me at five.","Tolong ingatkan saya jam lima."],["recommend","merekomendasikan","Can you recommend a good place?","Bisakah kamu merekomendasikan tempat yang bagus?"],["available","tersedia","Is this room available?","Apakah kamar ini tersedia?"]],
+"Perjalanan":[["luggage","bagasi","Where can I leave my luggage?","Di mana saya bisa menitipkan bagasi saya?"],["ticket","tiket","One ticket, please.","Satu tiket, tolong."],["directions","petunjuk arah","Can you give me directions?","Bisakah kamu memberi saya petunjuk arah?"],["delay","penundaan","The flight has a delay.","Penerbangannya mengalami penundaan."],["reserve","memesan","I'd like to reserve a table.","Saya ingin memesan meja."],["nearby","di dekat sini","Is there a pharmacy nearby?","Apakah ada apotek di dekat sini?"],["passport","paspor","Please show your passport.","Tolong tunjukkan paspor Anda."],["receipt","struk","May I have the receipt?","Boleh saya minta struknya?"]],
+"Pekerjaan":[["meeting","rapat","The meeting starts at ten.","Rapatnya dimulai jam sepuluh."],["deadline","tenggat waktu","The deadline is Friday.","Tenggat waktunya hari Jumat."],["invoice","faktur","I will send the invoice today.","Saya akan mengirim fakturnya hari ini."],["attach","melampirkan","I attached the file.","Saya sudah melampirkan filenya."],["confirm","mengonfirmasi","Please confirm your booking.","Tolong konfirmasi pemesanan Anda."],["request","permintaan","I have a request.","Saya punya satu permintaan."],["follow up","menindaklanjuti","I will follow up tomorrow.","Saya akan menindaklanjuti besok."],["available","tersedia","Are you available on Monday?","Apakah kamu tersedia hari Senin?"]]
+};
+var topic="Sehari-hari",mode="card",i=0,flip=false,q=null;
+var $=function(id){return document.getElementById(id)};
+function shuffle(a){a=a.slice();for(var n=a.length-1;n>0;n--){var j=Math.floor(Math.random()*(n+1));var t=a[n];a[n]=a[j];a[j]=t}return a}
+function speak(t,r){try{var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=r||.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function drawTopics(){var h=$("topics");h.innerHTML="";Object.keys(DATA).forEach(function(k){var b=document.createElement("button");b.className="chip";b.textContent=k;b.setAttribute("aria-pressed",k===topic);b.onclick=function(){topic=k;i=0;flip=false;q=null;drawTopics();render()};h.appendChild(b)})}
+function syncChrome(){var off=mode==="grammar"||mode==="chat";$("topics").hidden=off;$("gen").hidden=!sampler||off;$("gm").hidden=off}
+function setMode(m){mode=m;q=null;i=0;flip=false;try{speechSynthesis.cancel()}catch(e){}try{if(srec)srec.abort()}catch(e){}L.items=null;S.items=null;["card","quiz","gram","listen","speak","chat"].forEach(function(k){$("t-"+k).setAttribute("aria-selected",(k==="gram"?"grammar":k)===m)});syncChrome();render()}
+function render(){mode==="card"?card():mode==="quiz"?quiz():mode==="grammar"?grammar():mode==="listen"?listen():mode==="speak"?speaking():chat()}
+function card(){
+var d=DATA[topic],w=d[i],v=$("view");
+v.innerHTML='<button class="card" id="c" aria-label="Balik kartu">'+(flip?'<div class="mean">'+w[1]+'</div><div class="ex">'+w[2]+'</div><div class="tr">'+(w[3]||"")+'</div>':'<div class="word">'+w[0]+'</div><div class="hint">Ketuk untuk melihat artinya</div>')+'</button>'+
+'<div class="row" style="justify-content:center"><button class="speak" id="sp">Dengarkan</button></div>'+
+'<div class="nav"><button class="btn ghost" id="pv">Sebelumnya</button><span class="count">'+(i+1)+' dari '+d.length+'</span><button class="btn" id="nx">Berikutnya</button></div>';
+$("c").onclick=function(){flip=!flip;card()};
+$("sp").onclick=function(){speak(flip?w[2]:w[0])};
+$("pv").onclick=function(){i=(i-1+d.length)%d.length;flip=false;card()};
+$("nx").onclick=function(){i=(i+1)%d.length;flip=false;card()};
+}
+var qerr="",seen={};
+function esc(t){return String(t).replace(/[<>&]/g,"")}
+function startLocal(){
+var pool=[];Object.keys(DATA).forEach(function(k){DATA[k].forEach(function(x){if(pool.indexOf(x[1])<0)pool.push(x[1])})});
+q={ai:false,n:0,score:0,picked:null,items:shuffle(DATA[topic]).map(function(w){
+return{p:"Apa arti kata ini?",big:w[0],sp:w[0],a:w[1],why:"",opts:shuffle(shuffle(pool.filter(function(x){return x!==w[1]})).slice(0,3).concat([w[1]]))}})};
+qerr="";quiz()}
+async function startAI(){
+$("view").innerHTML='<div class="card"><div class="hint" style="margin:0">Menyusun soal baru...</div></div>';
+var d=DATA[topic],prev=(seen[topic]||[]).slice(-24);
+try{
+var r=await sampler.json("Buat 8 soal pilihan ganda untuk pelajar Bahasa Inggris penutur Bahasa Indonesia, tingkat pemula sampai menengah, dengan topik: "+topic+". Kosakata yang sudah dipelajari: "+d.map(function(w){return w[0]+" = "+w[1]}).join("; ")+". Soal boleh memakai kosakata itu dan kata lain yang masih berkaitan dengan topik. Variasikan jenis soal: melengkapi kalimat Bahasa Inggris (tulis ___ untuk bagian kosong), memilih kata Inggris untuk arti Bahasa Indonesia, memilih terjemahan yang tepat, dan memilih kalimat yang benar secara tata bahasa. Setiap soal punya tepat 4 pilihan dan 1 jawaban benar. "+(prev.length?"Jangan ulangi soal berikut: "+prev.join(" | ")+". ":"")+"Balas HANYA dengan JSON array berisi 8 objek berbentuk {\"q\":\"teks soal\",\"options\":[4 string],\"answer\":indeks jawaban benar 0 sampai 3,\"why\":\"penjelasan singkat dalam Bahasa Indonesia\"}. Tanpa teks lain.",{cache:false});
+var ok=Array.isArray(r)&&r.length>=3&&r.every(function(x){return x&&typeof x.q==="string"&&Array.isArray(x.options)&&x.options.length===4&&x.answer>=0&&x.answer<4});
+if(!ok)throw new Error("format");
+seen[topic]=prev.concat(r.map(function(x){return x.q}));
+q={ai:true,n:0,score:0,picked:null,items:r.map(function(x){var c=String(x.options[x.answer]);return{p:x.q,a:c,why:String(x.why||""),opts:shuffle(x.options.map(String))}})};
+qerr="";quiz()
+}catch(e){q=null;qerr=(e&&e.code==="not_granted")?"Izin belum diberikan. Coba lagi dan setujui permintaannya.":"Gagal membuat soal. Coba lagi.";quiz()}}
+function quiz(){
+var v=$("view");
+if(!q){
+if(!sampler){startLocal();return}
+v.innerHTML='<div class="card"><div class="word" style="font-size:1.7rem">Kuis: '+esc(topic)+'</div><p class="sub" style="margin:8px 0 0">Pilih jenis soal.</p></div><div class="opts"><button class="opt" id="ql">Kuis cepat<div class="hint" style="margin:2px 0 0">Tebak arti kata dari topik ini</div></button><button class="opt" id="qa">Soal baru dari AI<div class="hint" style="margin:2px 0 0">Soal berbeda setiap kali, sesuai topik ini</div></button></div><p class="hint" role="status" style="color:var(--bad)">'+qerr+'</p>';
+$("ql").onclick=startLocal;$("qa").onclick=startAI;return}
+var total=q.items.length;
+if(q.n>=total){
+v.innerHTML='<div class="card"><div class="big">'+q.score+' / '+total+'</div><p>'+(q.score===total?'Sempurna! Semua jawaban benar.':q.score>=total/2?'Bagus! Ulangi untuk nilai yang lebih tinggi.':'Terus berlatih. Coba pakai kartu dulu, lalu kuis lagi.')+'</p></div><div class="nav" style="justify-content:center"><button class="btn" id="re">'+(q.ai?'Soal baru':'Main lagi')+'</button>'+(sampler||q.back?'<button class="btn ghost" id="mn">'+(q.back||'Menu kuis')+'</button>':'')+'</div>';
+$("re").onclick=function(){q.again?q.again():(q.ai?startAI():startLocal())};
+if($("mn"))$("mn").onclick=function(){var b=q.back;q=null;b?grammar():quiz()};return}
+var it=q.items[q.n];
+v.innerHTML='<div class="bar"><i style="width:'+(q.n/total*100)+'%"></i></div><div class="card">'+(it.big?'<div class="hint" style="margin:0 0 6px">'+esc(it.p)+'</div><div class="word">'+esc(it.big)+'</div>':'<div class="qp">'+esc(it.p)+'</div>')+(it.sp?'<button class="speak" id="sp">Dengarkan</button>':'')+'</div><div class="opts" id="o"></div><p class="tr" id="why" role="status"></p><div class="nav"><span class="count">'+(q.n+1)+' dari '+total+'</span><button class="btn" id="nx" style="visibility:hidden">Lanjut</button></div>';
+if(it.sp)$("sp").onclick=function(){speak(it.sp)};
+it.opts.forEach(function(o){var b=document.createElement("button");b.className="opt";b.textContent=o;b.onclick=function(){
+if(q.picked!==null)return;q.picked=o;
+if(o===it.a){q.score++;b.classList.add("right")}else{b.classList.add("wrong")}
+Array.prototype.forEach.call($("o").children,function(x){if(x.textContent===it.a)x.classList.add("right")});
+$("why").textContent=it.why;$("nx").style.visibility="visible";$("nx").focus()};$("o").appendChild(b)});
+$("nx").onclick=function(){q.n++;q.picked=null;quiz()};
+}
+
+var GR=[
+{t:"Simple Present",rule:"Dipakai untuk kebiasaan, fakta, dan jadwal tetap. Untuk he/she/it, kata kerja diberi -s atau -es.",form:"I/You/We/They + V1  |  He/She/It + V1-s/es",ex:[["I drink coffee every morning.","Saya minum kopi setiap pagi."],["She works at a hotel.","Dia bekerja di sebuah hotel."],["The sun rises in the east.","Matahari terbit di timur."]],qs:[["She ___ to work by bike.",["go","goes","going","gone"],1,"She termasuk he/she/it, jadi kata kerja diberi -es: goes."],["They ___ English every day.",["study","studies","studying","studied"],0,"They memakai bentuk dasar tanpa -s."],["He ___ not like spicy food.",["do","does","is","are"],1,"Untuk he/she/it, bentuk negatifnya does not."]]},
+{t:"Simple Past",rule:"Dipakai untuk kejadian yang sudah selesai di masa lalu. Kata kerja beraturan ditambah -ed, sebagian lain tidak beraturan (go menjadi went).",form:"Subject + V2  |  didn't + V1",ex:[["I visited Ubud last week.","Saya mengunjungi Ubud minggu lalu."],["We went to the beach yesterday.","Kami pergi ke pantai kemarin."],["She didn't call me.","Dia tidak menelepon saya."]],qs:[["Yesterday, I ___ a new book.",["buy","bought","buying","buys"],1,"Bought adalah bentuk lampau dari buy (tidak beraturan)."],["They ___ the movie last night.",["watch","watched","watches","watching"],1,"Last night menunjukkan masa lalu, jadi pakai watched."],["He didn't ___ the door.",["open","opened","opens","opening"],0,"Setelah didn't, kata kerja kembali ke bentuk dasar."]]},
+{t:"Present Continuous",rule:"Dipakai untuk kegiatan yang sedang berlangsung sekarang atau rencana dekat.",form:"am/is/are + V-ing",ex:[["I am studying English now.","Saya sedang belajar Bahasa Inggris sekarang."],["They are waiting outside.","Mereka sedang menunggu di luar."],["She is not sleeping.","Dia tidak sedang tidur."]],qs:[["Look! It ___ raining.",["is","are","am","does"],0,"It memakai is, lalu raining (V-ing)."],["We ___ dinner right now.",["are having","have","has","had"],0,"Right now menunjukkan kegiatan yang sedang berlangsung: are having."],["I am ___ to music.",["listen","listens","listening","listened"],2,"Setelah am/is/are, kata kerja memakai -ing."]]},
+{t:"Future: will & going to",rule:"Will untuk keputusan spontan atau janji. Be going to untuk rencana yang sudah ditentukan.",form:"will + V1  |  am/is/are + going to + V1",ex:[["I will help you.","Saya akan membantumu."],["We are going to travel to Japan.","Kami akan bepergian ke Jepang."],["It will probably rain tomorrow.","Besok mungkin akan hujan."]],qs:[["The phone is ringing. I ___ answer it.",["will","am going","did","have"],0,"Keputusan spontan memakai will."],["She ___ going to start a new job next month.",["is","are","will","does"],0,"She memakai is: is going to."],["I will ___ you tomorrow.",["call","called","calling","calls"],0,"Setelah will, kata kerja memakai bentuk dasar."]]},
+{t:"Articles: a, an, the",rule:"A dipakai sebelum bunyi konsonan, an sebelum bunyi vokal (a, i, u, e, o). The untuk benda yang sudah jelas atau spesifik.",form:"a + konsonan  |  an + vokal  |  the + sudah jelas",ex:[["I need a pen.","Saya butuh sebuah pulpen."],["She is an engineer.","Dia seorang insinyur."],["Please close the door.","Tolong tutup pintunya."]],qs:[["He eats ___ apple every day.",["a","an","the","some"],1,"Apple diawali bunyi vokal, jadi an."],["I bought a shirt. ___ shirt is blue.",["A","An","The","Some"],2,"Kemeja itu sudah disebut sebelumnya, jadi pakai the."],["She is ___ teacher.",["a","an","the","some"],0,"Teacher diawali konsonan dan profesinya umum: a."]]},
+{t:"Prepositions of time",rule:"At untuk jam, on untuk hari dan tanggal, in untuk bulan, tahun, dan bagian hari.",form:"at + jam  |  on + hari/tanggal  |  in + bulan/tahun",ex:[["The meeting is at 9 a.m.","Rapatnya jam 9 pagi."],["My birthday is on Monday.","Ulang tahun saya hari Senin."],["We travel in July.","Kami bepergian pada bulan Juli."]],qs:[["I wake up ___ six o'clock.",["at","on","in","by"],0,"Untuk jam, pakai at."],["The party is ___ Saturday.",["at","on","in","to"],1,"Untuk hari, pakai on."],["She was born ___ 1998.",["at","on","in","for"],2,"Untuk tahun, pakai in."]]}
+],gi=0,gerr="";
+function okQs(r,n){return Array.isArray(r)&&r.length>=n&&r.every(function(x){return x&&typeof x.q==="string"&&Array.isArray(x.options)&&x.options.length===4&&x.answer>=0&&x.answer<4})}
+function aiItems(r){return r.map(function(x){return{p:x.q,a:String(x.options[x.answer]),why:String(x.why||""),opts:shuffle(x.options.map(String))}})}
+function grammar(){
+if(q){quiz();return}
+var g=GR[gi],v=$("view");
+v.innerHTML='<div class="row" id="gch"></div>'+(sampler?'<div class="gen"><input id="gti" type="text" maxlength="60" placeholder="Topik grammar apa saja, mis. present perfect" aria-label="Topik grammar baru"><button class="btn" id="gtb">Buat materi</button></div>':'')+'<p class="hint" id="gm2" role="status" style="margin:-4px 0 8px;color:var(--bad)">'+gerr+'</p><div class="card gcard"><div class="word" style="font-size:1.7rem">'+esc(g.t)+'</div><p>'+esc(g.rule)+'</p><div class="frm">'+esc(g.form)+'</div><div id="ge" style="width:100%"></div></div><div class="nav"><button class="btn ghost" id="gp">Latihan soal</button>'+(sampler?'<button class="btn" id="gpa">Soal baru dari AI</button>':'')+'</div>';
+GR.forEach(function(x,n){var b=document.createElement("button");b.className="chip";b.textContent=x.t;b.setAttribute("aria-pressed",n===gi);b.onclick=function(){gi=n;gerr="";grammar()};$("gch").appendChild(b)});
+g.ex.forEach(function(e){var d=document.createElement("div");d.className="exr";var a=document.createElement("div");a.className="en";a.textContent=e[0];var t=document.createElement("div");t.className="idn";t.textContent=e[1];var s=document.createElement("button");s.className="speak";s.textContent="Dengarkan";s.onclick=function(){speak(e[0])};d.appendChild(a);d.appendChild(t);d.appendChild(s);$("ge").appendChild(d)});
+$("gp").onclick=gPractice;
+if(sampler){$("gpa").onclick=gAI;$("gtb").onclick=gNew;$("gti").onkeydown=function(e){if(e.key==="Enter")gNew()}}
+}
+function gPractice(){var g=GR[gi];q={ai:false,n:0,score:0,picked:null,back:"Kembali ke materi",again:gPractice,items:shuffle(g.qs).map(function(x){return{p:x[0],a:x[1][x[2]],why:x[3],opts:shuffle(x[1].slice())}})};quiz()}
+async function gAI(){
+var g=GR[gi],key="g:"+g.t,prev=(seen[key]||[]).slice(-24);
+$("view").innerHTML='<div class="card"><div class="hint" style="margin:0">Menyusun soal baru...</div></div>';
+try{
+var r=await sampler.json("Buat 6 soal pilihan ganda tentang grammar Bahasa Inggris: "+g.t+" ("+g.rule+") untuk pelajar penutur Bahasa Indonesia, tingkat pemula sampai menengah. Variasikan soal: melengkapi kalimat dengan ___, memilih kalimat yang benar, mencari kesalahan, dan memilih terjemahan yang tepat. Setiap soal punya tepat 4 pilihan dan 1 jawaban benar. "+(prev.length?"Jangan ulangi soal berikut: "+prev.join(" | ")+". ":"")+"Balas HANYA dengan JSON array berisi 6 objek berbentuk {\"q\":\"teks soal\",\"options\":[4 string],\"answer\":indeks jawaban benar 0 sampai 3,\"why\":\"penjelasan singkat dalam Bahasa Indonesia\"}. Tanpa teks lain.",{cache:false});
+if(!okQs(r,3))throw new Error("format");
+seen[key]=prev.concat(r.map(function(x){return x.q}));
+q={ai:true,n:0,score:0,picked:null,back:"Kembali ke materi",again:gAI,items:aiItems(r)};gerr="";quiz()
+}catch(e){q=null;gerr=(e&&e.code==="not_granted")?"Izin belum diberikan. Coba lagi dan setujui permintaannya.":"Gagal membuat soal. Coba lagi.";grammar()}}
+async function gNew(){
+var t=$("gti").value.trim();if(!t||!sampler)return;
+$("gtb").disabled=true;$("gm2").style.color="var(--mute)";$("gm2").textContent="Menyusun materi...";
+try{
+var r=await sampler.json("Jelaskan topik grammar Bahasa Inggris berikut untuk pelajar penutur Bahasa Indonesia, tingkat pemula sampai menengah: "+t+". Balas HANYA dengan JSON berbentuk {\"title\":\"nama topik dalam Bahasa Inggris\",\"rule\":\"penjelasan singkat 1 sampai 3 kalimat dalam Bahasa Indonesia\",\"form\":\"rumus kalimat ringkas\",\"examples\":[3 pasangan [kalimat Inggris, terjemahan Indonesia]],\"questions\":[4 objek {\"q\":\"soal\",\"options\":[4 string],\"answer\":indeks 0 sampai 3,\"why\":\"penjelasan singkat dalam Bahasa Indonesia\"}]}. Tanpa teks lain.");
+var ok=r&&typeof r.title==="string"&&typeof r.rule==="string"&&typeof r.form==="string"&&Array.isArray(r.examples)&&r.examples.length>=2&&r.examples.every(function(a){return Array.isArray(a)&&a.length>=2})&&okQs(r.questions,3);
+if(!ok)throw new Error("format");
+GR.push({t:esc(r.title),rule:esc(r.rule),form:esc(r.form),ex:r.examples.map(function(a){return[esc(a[0]),esc(a[1])]}),qs:r.questions.map(function(x){return[esc(x.q),x.options.map(function(o){return esc(o)}),x.answer,esc(x.why||"")]})});
+gi=GR.length-1;gerr="";grammar()
+}catch(e){gerr=(e&&e.code==="not_granted")?"Izin belum diberikan. Coba lagi dan setujui permintaannya.":"Gagal membuat materi. Coba dengan nama topik yang lebih jelas.";grammar()}}
+
+var L={m:"pick",items:null,topic:null,n:0,score:0,picked:null,opts:null,rate:.8},S={items:null,topic:null,n:0,ok:0},srec=null;
+function sents(){return DATA[topic].map(function(w){return{en:w[2],id:w[3]||"",w:w[0]}})}
+function norm(t){return String(t).toLowerCase().replace(/[^a-z0-9' ]/g," ").split(/\s+/).filter(Boolean)}
+function cmp(target,heard){var tw=norm(target),pool=norm(heard);var marks=tw.map(function(w){var k=pool.indexOf(w);if(k>=0){pool.splice(k,1);return{w:w,ok:true}}return{w:w,ok:false}});var hit=marks.filter(function(m){return m.ok}).length;return{pct:tw.length?Math.round(hit/tw.length*100):0,marks:marks}}
+function marksEl(r){var m=document.createElement("p");r.marks.forEach(function(k){var sp=document.createElement("span");sp.className=k.ok?"mk-ok":"mk-miss";sp.textContent=k.w+" ";m.appendChild(sp)});return m}
+function startL(){L.items=shuffle(sents());L.n=0;L.score=0;L.ans=0;L.done=false;L.picked=null;L.opts=null}
+async function moreSents(){
+var used=L.items.map(function(x){return x.en}).slice(-40),got=null;
+$("view").innerHTML='<div class="card"><div class="hint" style="margin:0">Menyiapkan kalimat baru...</div></div>';
+if(sampler){try{
+var r=await sampler.json("Buat 8 kalimat Bahasa Inggris sederhana (5 sampai 10 kata) untuk latihan dikte dengan topik: "+topic+", tingkat pemula sampai menengah, beserta terjemahan Bahasa Indonesia. Jangan ulangi kalimat berikut: "+used.join(" | ")+". Balas HANYA dengan JSON array berisi 8 pasangan [kalimat Inggris, terjemahan Indonesia]. Tanpa teks lain.",{cache:false});
+if(Array.isArray(r)&&r.length>=3&&r.every(function(a){return Array.isArray(a)&&a.length>=2}))got=r.map(function(a){return{en:esc(a[0]),id:esc(a[1]),w:""}})
+}catch(e){}}
+L.items=L.items.concat(got||shuffle(sents()))}
+function lchips(){var h=$("lh");[["pick","Pilih arti"],["dict","Dikte"]].forEach(function(x){var b=document.createElement("button");b.className="chip";b.textContent=x[1];b.setAttribute("aria-pressed",L.m===x[0]);b.onclick=function(){L.m=x[0];startL();listen()};h.appendChild(b)});var r=document.createElement("button");r.className="chip";r.textContent="Kecepatan: "+(L.rate<.9?"pelan":"normal");r.onclick=function(){L.rate=L.rate<.9?1:.8;listen()};h.appendChild(r)}
+function listen(){
+var v=$("view");
+if(!L.items||L.topic!==topic){L.topic=topic;startL()}
+var total=L.items.length,head='<div class="row" id="lh"></div>';
+if(L.done||(L.m==="pick"&&L.n>=total)){v.innerHTML=head+'<div class="card"><div class="big">'+L.score+' / '+(L.m==="dict"?L.ans:total)+'</div><p>Latihan listening selesai.</p></div><div class="nav" style="justify-content:center"><button class="btn" id="lre">Main lagi</button></div>';lchips();$("lre").onclick=function(){startL();listen()};return}
+var it=L.items[L.n],dict=L.m==="dict",foot=dict?'<div class="nav"><span class="count" id="cnt">Soal ke '+(L.n+1)+' \u00b7 benar '+L.score+'</span><button class="btn ghost" id="fin">Selesai</button><button class="btn" id="nx" style="visibility:hidden">Lanjut</button></div>':'<div class="nav"><span class="count">'+(L.n+1)+' dari '+total+'</span><button class="btn" id="nx" style="visibility:hidden">Lanjut</button></div>',bar=dict?'':'<div class="bar"><i style="width:'+(L.n/total*100)+'%"></i></div>';
+if(L.m==="pick"){
+v.innerHTML=head+bar+'<div class="card"><div class="hint" style="margin:0 0 12px">Dengarkan kalimatnya, lalu pilih artinya.</div><button class="btn" id="lp">Putar kalimat</button><div class="ex" id="lr" style="min-height:1.5em"></div></div><div class="opts" id="o"></div>'+foot;
+lchips();
+$("lp").onclick=function(){speak(it.en,L.rate)};
+if(!L.opts){var pool=[];Object.keys(DATA).forEach(function(k){DATA[k].forEach(function(x){if(x[3]&&x[3]!==it.id&&pool.indexOf(x[3])<0)pool.push(x[3])})});L.opts=shuffle(shuffle(pool).slice(0,3).concat([it.id]))}
+L.opts.forEach(function(o){var b=document.createElement("button");b.className="opt";b.textContent=o;b.onclick=function(){if(L.picked!==null)return;L.picked=o;if(o===it.id){L.score++;b.classList.add("right")}else{b.classList.add("wrong")}Array.prototype.forEach.call($("o").children,function(x){if(x.textContent===it.id)x.classList.add("right")});$("lr").textContent=it.en;$("nx").style.visibility="visible";$("nx").focus()};$("o").appendChild(b)});
+}else{
+v.innerHTML=head+bar+'<div class="card"><div class="hint" style="margin:0 0 12px">Dengarkan, lalu ketik kalimat yang kamu dengar.</div><button class="btn" id="lp">Putar kalimat</button></div><div class="gen" style="margin-top:14px"><input id="ld" type="text" autocomplete="off" aria-label="Ketik kalimat yang kamu dengar" placeholder="Ketik di sini"><button class="btn" id="lc">Periksa</button></div><div id="lres" role="status"></div>'+foot;
+lchips();
+$("lp").onclick=function(){speak(it.en,L.rate)};
+var chk=function(){if(!$("ld").value.trim()||$("lc").disabled)return;var r=cmp(it.en,$("ld").value),out=$("lres");out.innerHTML="";
+var p=document.createElement("p");p.className="tr";p.textContent=r.pct+"% kata tepat"+(r.pct>=80?". Bagus!":". Dengarkan lagi dan perhatikan kata yang salah.");out.appendChild(p);out.appendChild(marksEl(r));
+var a=document.createElement("p");a.className="hint";a.textContent=it.en+" = "+it.id;out.appendChild(a);
+L.ans++;if(r.pct>=80)L.score++;$("cnt").textContent="Soal ke "+(L.n+1)+" \u00b7 benar "+L.score;$("lc").disabled=true;$("ld").disabled=true;$("nx").style.visibility="visible";$("nx").focus()};
+$("lc").onclick=chk;$("ld").onkeydown=function(e){if(e.key==="Enter")chk()};
+}
+$("nx").onclick=async function(){L.n++;L.picked=null;L.opts=null;if(L.m==="dict"&&L.n>=L.items.length)await moreSents();listen()};
+if($("fin"))$("fin").onclick=function(){L.done=true;listen()};
+}
+function showRes(it,heard){var out=$("sres");if(!out)return;var r=cmp(it.en,heard);out.innerHTML="";
+var h=document.createElement("p");h.className="hint";h.textContent="Terdengar: "+heard;out.appendChild(h);
+var p=document.createElement("p");p.className="tr";p.textContent=r.pct+"% kata tepat"+(r.pct>=80?". Bagus!":". Coba ulangi pelan-pelan. Dengarkan contohnya dulu.");out.appendChild(p);out.appendChild(marksEl(r))}
+function speaking(){
+var v=$("view");
+if(!S.items||S.topic!==topic){S.topic=topic;S.items=shuffle(sents());S.n=0;S.ok=0}
+var it=S.items[S.n%S.items.length],SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+v.innerHTML='<div class="card"><div class="hint" style="margin:0 0 8px">Ucapkan kalimat ini dengan keras</div><div class="word" style="font-size:1.6rem">'+esc(it.en)+'</div><div class="mean" style="font-size:1.05rem;margin-top:8px">'+esc(it.id)+'</div><button class="speak" id="sp">Dengarkan contoh</button></div><div class="row" style="justify-content:center;margin-top:14px">'+(SR?'<button class="btn" id="rec">Mulai bicara</button>':'')+'</div><div id="sres" role="status" style="min-height:3em"></div><p class="hint">'+(SR?'':'Browser ini belum mendukung pengenalan suara. ')+'Penilaian mandiri:</p><div class="row"><button class="chip" id="sok">Sudah lancar</button><button class="chip" id="sre">Ulangi</button></div><div class="nav"><button class="btn ghost" id="pv">Sebelumnya</button><span class="count">Lancar: '+S.ok+'</span><button class="btn" id="nx">Berikutnya</button></div>';
+$("sp").onclick=function(){speak(it.en,.85)};
+$("sok").onclick=function(){S.ok++;S.n++;speaking()};
+$("sre").onclick=function(){$("sres").textContent="";speak(it.en,.8)};
+$("pv").onclick=function(){S.n=(S.n-1+S.items.length)%S.items.length;speaking()};
+$("nx").onclick=function(){S.n++;speaking()};
+if(SR)$("rec").onclick=function(){
+var b=$("rec"),out=$("sres");out.textContent="";
+try{srec=new SR();srec.lang="en-US";srec.interimResults=false;srec.maxAlternatives=1}catch(e){out.textContent="Pengenalan suara tidak bisa dimulai di sini. Pakai penilaian mandiri.";return}
+b.disabled=true;b.textContent="Mendengarkan...";
+srec.onresult=function(ev){showRes(it,ev.results[0][0].transcript)};
+srec.onerror=function(ev){var c=ev.error;out.textContent=(c==="not-allowed"||c==="service-not-allowed")?"Mikrofon diblokir atau izin ditolak untuk halaman ini. Aktifkan izin mikrofon, atau pakai penilaian mandiri.":c==="no-speech"?"Suara tidak terdengar. Coba lagi.":"Pengenalan suara gagal ("+c+"). Coba lagi atau pakai penilaian mandiri."};
+srec.onend=function(){b.disabled=false;b.textContent="Mulai bicara"};
+try{srec.start()}catch(e){b.disabled=false;b.textContent="Mulai bicara";out.textContent="Pengenalan suara tidak bisa dimulai di sini. Pakai penilaian mandiri."}
+};
+}
+
+var C={sc:0,lvl:"Pemula",custom:"",on:false,msgs:[],busy:false,err:""};
+var SC=[["Obrolan bebas","a friendly English conversation partner chatting about everyday life"],["Resepsionis hotel","a hotel receptionist talking with a guest"],["Pesan makanan","a waiter taking an order at a restaurant"],["Wawancara kerja","a friendly interviewer in a job interview"],["Bertanya arah","a local person helping a tourist with directions"]];
+function addFix(d,m){if(!m.fix&&!m.note)return;var f=document.createElement("div");f.className="fix";f.textContent=(m.fix?"Lebih tepat: "+m.fix:"")+(m.fix&&m.note?"\n":"")+(m.note||"");d.appendChild(f)}
+function bub(m){
+var d=document.createElement("div");d.className="bub "+(m.role==="ai"?"ai":"me");
+var t=document.createElement("div");t.textContent=m.text;d.appendChild(t);
+if(m.role==="ai"){
+var a=document.createElement("div");a.className="acts";
+var sp=document.createElement("button");sp.className="speak";sp.textContent="Dengarkan";sp.onclick=function(){speak(m.text,.9)};
+var tb=document.createElement("button");tb.className="speak";tb.textContent="Lihat arti";
+var idn=document.createElement("div");idn.className="idn";idn.textContent=m.id||"";idn.hidden=true;
+tb.onclick=function(){idn.hidden=!idn.hidden;tb.textContent=idn.hidden?"Lihat arti":"Sembunyikan arti"};
+a.appendChild(sp);if(m.id)a.appendChild(tb);d.appendChild(a);if(m.id)d.appendChild(idn)
+}else addFix(d,m);
+return d}
+function chat(){
+var v=$("view");
+if(!sampler){v.innerHTML='<div class="card"><p>Menyiapkan fitur obrolan... Fitur ini memakai AI. Kalau tidak muncul, berarti fitur AI belum aktif di server.</p></div>';return}
+if(!C.on){
+v.innerHTML='<div class="card" style="align-items:flex-start;text-align:left"><div class="word" style="font-size:1.6rem">Ngobrol dalam Bahasa Inggris</div><p class="sub" style="margin:6px 0 0">AI berperan sesuai skenario, membalas dengan Bahasa Inggris sederhana, dan memperbaiki kalimatmu dengan lembut.</p></div><p class="hint">Pilih skenario</p><div class="row" id="csc"></div><div class="gen"><input id="ccu" type="text" maxlength="80" placeholder="Atau tulis skenario sendiri, mis. memesan taksi" aria-label="Skenario sendiri"></div><p class="hint">Tingkat</p><div class="row" id="clv"></div><div class="nav" style="justify-content:center"><button class="btn" id="cgo">Mulai percakapan</button></div><p class="hint" role="status" style="color:var(--bad)">'+esc(C.err)+'</p>';
+SC.forEach(function(x,n){var b=document.createElement("button");b.className="chip";b.textContent=x[0];b.setAttribute("aria-pressed",!C.custom&&C.sc===n);b.onclick=function(){C.sc=n;C.custom="";chat()};$("csc").appendChild(b)});
+$("ccu").value=C.custom;$("ccu").oninput=function(){C.custom=this.value.trim()};
+["Pemula","Menengah"].forEach(function(l){var b=document.createElement("button");b.className="chip";b.textContent=l;b.setAttribute("aria-pressed",C.lvl===l);b.onclick=function(){C.lvl=l;C.custom=$("ccu").value.trim();chat()};$("clv").appendChild(b)});
+$("cgo").onclick=function(){C.custom=$("ccu").value.trim();C.on=true;C.msgs=[];C.err="";chat();turn(null)};
+return}
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+v.innerHTML='<div class="row" style="justify-content:space-between;align-items:center"><span class="count">'+esc(C.custom||SC[C.sc][0])+' \u00b7 '+C.lvl+'</span><button class="chip" id="cnew">Ganti skenario</button></div><div class="chat" id="cl" aria-live="polite"></div><div class="gen"><input id="ci" type="text" autocomplete="off" placeholder="Ketik balasanmu dalam Bahasa Inggris" aria-label="Balasanmu">'+(SR?'<button class="btn ghost" id="cm">Bicara</button>':'')+'<button class="btn" id="cs">Kirim</button></div><p class="hint" id="cst" role="status" style="color:var(--bad)"></p>';
+C.msgs.forEach(function(m){$("cl").appendChild(bub(m))});
+$("cl").scrollTop=$("cl").scrollHeight;
+$("cnew").onclick=function(){C.on=false;chat()};
+var send=function(){var t=$("ci").value.trim();if(!t||C.busy)return;$("ci").value="";turn(t)};
+$("cs").onclick=send;$("ci").onkeydown=function(e){if(e.key==="Enter")send()};
+if(SR)$("cm").onclick=function(){
+var b=$("cm"),st=$("cst");st.textContent="";
+try{srec=new SR();srec.lang="en-US";srec.interimResults=false;srec.maxAlternatives=1}catch(e){st.textContent="Pengenalan suara tidak bisa dimulai di sini. Ketik saja balasanmu.";return}
+b.disabled=true;b.textContent="Mendengarkan...";
+srec.onresult=function(ev){$("ci").value=ev.results[0][0].transcript;$("ci").focus()};
+srec.onerror=function(ev){var c=ev.error;st.textContent=(c==="not-allowed"||c==="service-not-allowed")?"Mikrofon diblokir atau izin ditolak untuk halaman ini. Ketik saja balasanmu.":c==="no-speech"?"Suara tidak terdengar. Coba lagi.":"Pengenalan suara gagal ("+c+"). Ketik saja balasanmu."};
+srec.onend=function(){b.disabled=false;b.textContent="Bicara"};
+try{srec.start()}catch(e){b.disabled=false;b.textContent="Bicara";st.textContent="Pengenalan suara tidak bisa dimulai di sini. Ketik saja balasanmu."}
+};
+}
+async function turn(text){
+var cl=$("cl"),inp=$("ci"),snd=$("cs"),um=null,ume=null;
+C.busy=true;snd.disabled=true;
+if(text!==null){um={role:"me",text:text};C.msgs.push(um);ume=bub(um);cl.appendChild(ume)}
+var tp=document.createElement("div");tp.className="bub ai";tp.textContent="...";cl.appendChild(tp);cl.scrollTop=cl.scrollHeight;
+var scn=C.custom?"Skenario dari pelajar: "+C.custom+". Berperanlah sesuai skenario itu.":"Peranmu: "+SC[C.sc][1]+".";
+var hist=C.msgs.slice(0,text!==null?-1:C.msgs.length).slice(-12).map(function(m){return(m.role==="ai"?"Partner: ":"Pelajar: ")+m.text}).join("\n");
+var prompt="Kamu adalah partner latihan percakapan Bahasa Inggris untuk pelajar penutur Bahasa Indonesia, tingkat "+C.lvl.toLowerCase()+". "+scn+" Gunakan Bahasa Inggris sederhana yang sesuai tingkat itu, 1 sampai 3 kalimat, dan akhiri dengan satu pertanyaan agar percakapan berlanjut. Tetap dalam peran. "+(hist?"Percakapan sejauh ini:\n"+hist+"\n":"")+(text!==null?"Pesan terbaru pelajar: "+text+"\nPeriksa pesan terbaru itu. ":"Percakapan baru dimulai: sapa pelajar dan ajukan pertanyaan pertama. ")+"Balas HANYA dengan JSON {\"reply\":\"balasanmu dalam Bahasa Inggris\",\"id\":\"terjemahan balasanmu dalam Bahasa Indonesia\",\"fix\":\"versi yang lebih tepat dari pesan terbaru pelajar jika ada kesalahan tata bahasa atau pilihan kata, kosongkan jika sudah benar\",\"note\":\"penjelasan singkat dalam Bahasa Indonesia tentang perbaikannya, kosongkan jika tidak ada\"}. Tanpa teks lain.";
+try{
+var r=await sampler.json(prompt,{cache:false});
+if(!r||typeof r.reply!=="string"||!r.reply.trim())throw new Error("format");
+tp.remove();
+if(um){var fx=esc(r.fix||"");if(fx.trim().toLowerCase()===um.text.trim().toLowerCase())fx="";um.fix=fx;um.note=fx?esc(r.note||""):"";addFix(ume,um)}
+var am={role:"ai",text:esc(r.reply),id:esc(r.id||"")};C.msgs.push(am);if($("cl")===cl)cl.appendChild(bub(am));
+cl.scrollTop=cl.scrollHeight;
+}catch(e){
+tp.remove();
+var msg=(e&&e.code==="not_granted")?"Izin AI belum diberikan. Coba lagi dan setujui permintaannya.":"Gagal mendapat balasan. Coba kirim lagi.";
+if(text!==null){C.msgs.pop();ume.remove();if($("ci")===inp)inp.value=text;if($("cst"))$("cst").textContent=msg}
+else{C.on=false;C.err="Gagal memulai percakapan. "+msg;if(mode==="chat")chat()}
+}
+C.busy=false;if($("cs"))$("cs").disabled=false;
+}
+$("t-card").onclick=function(){setMode("card")};
+$("t-quiz").onclick=function(){setMode("quiz")};
+$("t-gram").onclick=function(){setMode("grammar")};
+$("t-listen").onclick=function(){setMode("listen")};
+$("t-speak").onclick=function(){setMode("speak")};
+$("t-chat").onclick=function(){setMode("chat")};
+drawTopics();render();
+var sampler=null;
+async function aiCall(prompt){
+var r=await fetch("/api/ai",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:String(prompt)})});
+var d={};try{d=await r.json()}catch(e){}
+if(!r.ok)throw{code:d.error||"error",message:d.message||""};
+return d.text||""}
+function makeSampler(){
+var f=async function(i){return{text:await aiCall(i),truncated:false}};
+f.json=async function(i){var t=(await aiCall(i)).replace(/```json|```/g,"").trim();var m=t.match(/[\[{][\s\S]*[\]}]/);return JSON.parse(m?m[0]:t)};
+return f}
+try{fetch("/api/health").then(function(r){return r.json()}).then(function(h){if(h&&h.ai){sampler=makeSampler();syncChrome();if(mode!=="card"&&!q)render()}}).catch(function(){})}catch(e){}
+async function gen(){
+var t=$("ti").value.trim();if(!t||!sampler)return;
+var b=$("tb");b.disabled=true;$("gm").textContent="Membuat kosakata untuk \""+t+"\"...";
+try{
+var r=await sampler.json("Buat 8 kosakata Bahasa Inggris yang berguna untuk topik: "+t+". Untuk pelajar penutur Bahasa Indonesia, tingkat pemula sampai menengah. Balas HANYA dengan JSON array berisi 8 array, masing-masing [kata atau frasa Inggris, arti dalam Bahasa Indonesia, satu kalimat contoh sederhana dalam Bahasa Inggris, terjemahan kalimat contoh itu dalam Bahasa Indonesia]. Tanpa teks lain.");
+var ok=Array.isArray(r)&&r.length>=4&&r.every(function(x){return Array.isArray(x)&&x.length>=4});
+if(!ok)throw new Error("format");
+var name=t.charAt(0).toUpperCase()+t.slice(1);
+DATA[name]=r.map(function(x){return x.slice(0,4).map(function(y){return esc(y)})});
+topic=name;i=0;flip=false;q=null;$("ti").value="";$("gm").textContent="";drawTopics();render();
+}catch(e){$("gm").textContent=(e&&e.code==="not_granted")?"Izin belum diberikan. Coba lagi dan setujui permintaannya.":"Gagal membuat topik. Coba lagi dengan kata yang lebih singkat."}
+b.disabled=false}
+$("tb").onclick=gen;
+$("ti").onkeydown=function(e){if(e.key==="Enter")gen()};
+</script>
+</body>
+</html>
